@@ -1,0 +1,37 @@
+name: Push Deployment
+
+on:
+  push:
+    branches:
+      - main # Change this to your desired branch if needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js (optional, adjust based on your project requirements)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Specify your Node.js version
+
+      # Install dependencies (optional, for Node.js projects)
+      - name: Install dependencies
+        run: npm install
+
+      # Build the project (optional, adjust based on your build command)
+      - name: Build project
+        run: npm run build
+
+      # Deploy (replace with your deployment logic)
+      - name: Deploy to server
+        run: |
+          echo "Deploying..."
+          # Add your deployment commands here
+          # Example for uploading files to a server using rsync:
+          # rsync -avz --delete ./build/ user@server:/path/to/deploy/
